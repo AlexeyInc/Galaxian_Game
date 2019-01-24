@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
     public int EnemyGridWidth;
      
     public int countLevels;
+    public GameObject player;
 
     private int _playerScore = 0;
     private Queue<int> _nextScoreToBonus;
@@ -64,13 +65,20 @@ public class GameManager : MonoBehaviour {
         _nextScoreToBonus = new Queue<int>(_countBonuses);
         InitScoreBonusPerSteps();
 
+        CreatePlayer();
         StartCoroutine(InitNewLevel());
-    }
+    } 
 
     void InitScoreBonusPerSteps()
     {
+        _nextScoreToBonus.Clear();
         for (int i = _scoreStepToBonus; i <= _countBonuses * _scoreStepToBonus; i += _scoreStepToBonus)
             _nextScoreToBonus.Enqueue(i);
+    }
+
+    void CreatePlayer()
+    {
+        Instantiate(player);
     }
 
     private IEnumerator InitNewLevel()
@@ -134,6 +142,7 @@ public class GameManager : MonoBehaviour {
         if (helth <= 0)
         {
             _isGameOver = true;
+            
             StartCoroutine(KillPlayer());
         }
     }
@@ -154,5 +163,5 @@ public class GameManager : MonoBehaviour {
     private void ActiveWinPanel()
     { 
         winPanel.SetActive(true);
-    }
+    } 
 }

@@ -199,7 +199,7 @@ MonoBehaviour:
   shield: {fileID: 1706924321839342, guid: dd95d95d8fa0af44f85444f946b8650b, type: 2}
   playerExplosion: {fileID: 1113852785904072, guid: 67f7a25b4a86da54bbc3d11a6c48708c,
     type: 2}
-  timeWait: 0.5
+  timeWait: 0.4
 --- !u!212 &212427778578055260
 SpriteRenderer:
   m_ObjectHideFlags: 1
