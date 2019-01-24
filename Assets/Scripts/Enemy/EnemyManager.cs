@@ -12,8 +12,9 @@ public class EnemyManager : MonoBehaviour {
         get { return _instance; }
     }
      
-    public GameObject redBoss;
-    public GameObject greenEnemy;
+    public GameObject SimpleEnemy;
+    public GameObject EnemyBoss; 
+    public GameObject enemyExplosion;
 
     public Transform enemyHolder;
      
@@ -63,10 +64,10 @@ public class EnemyManager : MonoBehaviour {
         switch (enemyType)
         {
             case EnemyType.Boss:
-                enemy = Instantiate(redBoss, new Vector2(col, row), Quaternion.identity);
+                enemy = Instantiate(EnemyBoss, new Vector2(col, row), Quaternion.identity);
                 break;
             case EnemyType.Standard:
-                enemy = Instantiate(greenEnemy, new Vector2(col, row), Quaternion.identity);
+                enemy = Instantiate(SimpleEnemy, new Vector2(col, row), Quaternion.identity);
                 break;
             default:
                 Debug.Log("Error type enemy.");
@@ -98,7 +99,7 @@ public class EnemyManager : MonoBehaviour {
             if (enemiesList[randIndex] != null) 
                 enemiesList[randIndex].Fire(); 
 
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2f);
         }
     }
 
@@ -113,7 +114,7 @@ public class EnemyManager : MonoBehaviour {
             if (enemiesList[randIndex] != null)
                 enemiesList[randIndex].MoveToPlayerAndAttack();
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(6f);
         }
     } 
 
@@ -122,9 +123,13 @@ public class EnemyManager : MonoBehaviour {
         return targetPoints[index].position;
     }
 
-    public void RemoveEnemyFromList(Enemy enemy)
+    public void KillEnemy(Enemy enemy)
     {
         enemiesList.Remove(enemy);
+
+        Destroy(enemy.gameObject);
+
+        Instantiate(enemyExplosion, enemy.gameObject.transform.position, Quaternion.identity);
     }
 
     public int GetEnemyCount()

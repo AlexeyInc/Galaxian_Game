@@ -16,7 +16,7 @@ public class PlayerProjectile : MonoBehaviour {
 
             if (enemyScript.EnemyHelth <= 0)
             {
-                EnemyManager.Instance.RemoveEnemyFromList(enemyScript);
+                EnemyManager.Instance.KillEnemy(enemyScript);
                  
                 GameManager.Instance.AddPlayerScore(enemyScript.EnemyScoreValue);
                 GameManager.Instance.CheckLevelComplete();

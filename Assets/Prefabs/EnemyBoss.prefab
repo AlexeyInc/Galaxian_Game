@@ -107,7 +107,7 @@ MonoBehaviour:
   countSteps: 8
   timeBetweenStep: 1.3
   speedMove: 4
-  speedForce: 10
+  speedForce: 9
   Radius: 4
   _angle: 45
   timeManuver: 4

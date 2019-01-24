@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Boundary
 {
-    public float xMax, xMin, yMax, yMin;
+    public float xMax, xMin;
 }
 
 public class PlayerController : MonoBehaviour
@@ -16,10 +16,12 @@ public class PlayerController : MonoBehaviour
     public Boundary boundary;
     public GameObject projectile;
     public Transform[] shootingSpawn;
-    public GameObject shield;//make other, not image
+    public GameObject shield;
+    public GameObject playerExplosion;
 
     public float timeWait;
-    public float timeNextFire;
+
+    private float timeNextFire;
 
     Rigidbody2D _rb;
 
@@ -55,8 +57,13 @@ public class PlayerController : MonoBehaviour
         _rb.velocity = movement * speed;
 
         _rb.position = new Vector2(
-            Mathf.Clamp(transform.position.x, boundary.xMin, boundary.xMax),
-            Mathf.Clamp(transform.position.y, boundary.yMin, boundary.yMax));
+            Mathf.Clamp(transform.position.x, boundary.xMin, boundary.xMax), transform.position.y);
+    }
+
+    public void Suicide()
+    { 
+        Destroy(this.gameObject);
+        Instantiate(playerExplosion, this.transform.position, Quaternion.identity);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -94,8 +101,7 @@ public class PlayerController : MonoBehaviour
      
     private void AddShootingSpawn()
     {
-        if (_countShootingSpawn < shootingSpawn.Length)
-        { 
+        if (_countShootingSpawn < shootingSpawn.Length) { 
             _countShootingSpawn += 2;
         }
     } 

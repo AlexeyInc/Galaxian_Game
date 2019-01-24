@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] 
     private int enemyScoreValue;
 
-    public GameObject projectile; 
+    public GameObject projectile;
       
     [Header("Base_Move")]
     public float stepLength; 
