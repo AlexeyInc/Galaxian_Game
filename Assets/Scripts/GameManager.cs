@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour {
         gameLevelText.text = "Level " + _numOfLevel.ToString();
         gameLevelText.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2.5f);
 
         EnemyManager.Instance.InitEnemyGrid(EnemyGridHeight, EnemyGridWidth);
         EnemyManager.Instance.UpdateEnemyLogic();
@@ -110,10 +110,10 @@ public class GameManager : MonoBehaviour {
     {
         if (countLevels == _numOfLevel)
         {
-            winPanel.SetActive(true);
+            EnemyManager.Instance.CreateBossEnemy();  
         }
         else
-        {
+        { 
             _numOfLevel++;
             StartCoroutine(InitNewLevel());
         }
@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(KillPlayer());
         }
     }
+
     IEnumerator KillPlayer()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().Suicide();
@@ -144,4 +145,14 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         gameOverPanel.SetActive(true);
     } 
+
+    public void PlayerWin() 
+    {
+        Invoke("ActiveWinPanel", 2f);
+    }
+
+    private void ActiveWinPanel()
+    { 
+        winPanel.SetActive(true);
+    }
 }

@@ -12,9 +12,10 @@ public class EnemyManager : MonoBehaviour {
         get { return _instance; }
     }
      
-    public GameObject SimpleEnemy;
-    public GameObject EnemyBoss; 
-    public GameObject enemyExplosion;
+    public GameObject GreenEnemy;
+    public GameObject RedEnemy;
+    public GameObject BossEnemy;
+    public GameObject enemyExplosion; 
 
     public Transform enemyHolder;
      
@@ -63,11 +64,11 @@ public class EnemyManager : MonoBehaviour {
         GameObject enemy = null; 
         switch (enemyType)
         {
-            case EnemyType.Boss:
-                enemy = Instantiate(EnemyBoss, new Vector2(col, row), Quaternion.identity);
-                break;
             case EnemyType.Standard:
-                enemy = Instantiate(SimpleEnemy, new Vector2(col, row), Quaternion.identity);
+                enemy = Instantiate(GreenEnemy, new Vector2(col, row), Quaternion.identity);
+                break;
+            case EnemyType.Boss:
+                enemy = Instantiate(RedEnemy, new Vector2(col, row), Quaternion.identity);
                 break;
             default:
                 Debug.Log("Error type enemy.");
@@ -140,5 +141,10 @@ public class EnemyManager : MonoBehaviour {
         }
 
         return enemiesList.Count;
+    }
+
+    public void CreateBossEnemy()
+    {
+        Instantiate(BossEnemy);
     }
 }

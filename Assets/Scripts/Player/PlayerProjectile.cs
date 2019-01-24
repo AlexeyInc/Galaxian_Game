@@ -8,22 +8,12 @@ public class PlayerProjectile : MonoBehaviour {
     {  
         if (other.gameObject.tag == "EnemyProjectile")
                 Destroy(other.gameObject); 
-
+        else
         if (other.gameObject.tag == "Enemy")
-        {
+        {  
             Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
-            enemyScript.EnemyHelth--;
-
-            if (enemyScript.EnemyHelth <= 0)
-            {
-                EnemyManager.Instance.KillEnemy(enemyScript);
-                 
-                GameManager.Instance.AddPlayerScore(enemyScript.EnemyScoreValue);
-                GameManager.Instance.CheckLevelComplete();
-
-                Destroy(other.gameObject); 
-            }
-        }
+            enemyScript.TakeDamage(); 
+        }  
 
         Destroy(this.gameObject);
     } 

@@ -6,12 +6,15 @@ public class DestroyByBoundary : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other)
     { 
-        if (other.gameObject.tag == "EnemyProjectile" || other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "EnemyProjectile")
         {
             Destroy(other.gameObject);
         }
-    }
 
-
-    //downlod PaintNet
+        if (other.gameObject.tag == "Enemy")
+        {
+            Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
+            enemyScript.TakeDamage(true);
+        }
+    } 
 }

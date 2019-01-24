@@ -326,7 +326,7 @@ MonoBehaviour:
   playerHelthText: {fileID: 526518325}
   gameLevelText: {fileID: 832972321}
   gameOverPanel: {fileID: 1644156369}
-  winPanel: {fileID: 0}
+  winPanel: {fileID: 1056292703}
   bonuses:
   - {fileID: 1615362190890084, guid: 727a9f54688bcea409640935b143807e, type: 2}
   - {fileID: 1469940597788404, guid: e402aa80322131f4a8414a17894d78d6, type: 2}
@@ -349,9 +349,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9019d5c90381a4145be5e432fdb05b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SimpleEnemy: {fileID: 1387541277991760, guid: f3a7110574b21f646b991afdb652a3cd,
-    type: 2}
-  EnemyBoss: {fileID: 1645168322133030, guid: 7f8261065ad155f4795eabc7acf981c5, type: 2}
+  GreenEnemy: {fileID: 1387541277991760, guid: f3a7110574b21f646b991afdb652a3cd, type: 2}
+  RedEnemy: {fileID: 1645168322133030, guid: 7f8261065ad155f4795eabc7acf981c5, type: 2}
+  BossEnemy: {fileID: 1709689566717770, guid: a8b1f13edd3253f4dbb0b786ce79bfeb, type: 2}
   enemyExplosion: {fileID: 1286031288815626, guid: dbdfd7fe814fb3c4aa20d70fd32b5a18,
     type: 2}
   enemyHolder: {fileID: 1986887839}
@@ -1072,7 +1072,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Win!
+  m_Text: You Win!
 --- !u!222 &1361991144
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1243,7 +1243,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1738465623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.5, y: -12.14, z: -10}
+  m_LocalPosition: {x: 10.5, y: -13.7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 280836810}

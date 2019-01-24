@@ -5,9 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {  
     [SerializeField]
-    private int enemyHelth;
+    private int helth;
     [SerializeField] 
-    private int enemyScoreValue;
+    private int scoreValue;
 
     public GameObject projectile;
       
@@ -25,17 +25,7 @@ public class Enemy : MonoBehaviour
     public float timeManuver = 3.5f;
 
     private Coroutine baseMoveCoroutine;
-     
-    public int EnemyScoreValue
-    {
-        get { return enemyScoreValue; }
-    }
-
-    public int EnemyHelth {
-        get { return enemyHelth; }
-        set { enemyHelth = value; }
-    }
-
+       
     void Start()
     {
         baseMoveCoroutine = StartCoroutine(BaseMove()); 
@@ -91,7 +81,7 @@ public class Enemy : MonoBehaviour
         {
             _angle += Time.deltaTime;
 
-            var offset = GetRotateDirectionVector(clockwise: circleMoveDirection) * Radius;
+            Vector2 offset = GetRotateDirectionVector(clockwise: circleMoveDirection) * Radius;
 
             transform.position = Vector3.MoveTowards(this.transform.position, centre + offset, speedMove * Time.deltaTime);
 
@@ -114,4 +104,17 @@ public class Enemy : MonoBehaviour
     {
         Instantiate(projectile, this.transform.position, Quaternion.identity);
     } 
+
+    public void TakeDamage(bool kill = false)
+    {
+        helth--;
+
+        if (helth <= 0 || kill)
+        { 
+            EnemyManager.Instance.KillEnemy(this);
+
+            GameManager.Instance.AddPlayerScore(scoreValue); 
+            GameManager.Instance.CheckLevelComplete(); 
+        }
+    }
 }

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public GameObject projectile;
     public Transform[] shootingSpawn;
     public GameObject shield;
-    public GameObject playerExplosion;
+    public GameObject playerExplosion;//give boss and create new
 
     public float timeWait;
 
