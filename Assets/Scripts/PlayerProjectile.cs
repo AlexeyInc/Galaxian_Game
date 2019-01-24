@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerProjectile : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other)
-    { 
+    {  
         if (other.gameObject.tag == "EnemyProjectile")
                 Destroy(other.gameObject); 
 

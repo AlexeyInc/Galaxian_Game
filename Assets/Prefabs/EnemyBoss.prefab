@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4738787474229320}
   - component: {fileID: 212460434933665766}
   - component: {fileID: 61194024507262668}
-  - component: {fileID: 114754362130021644}
   - component: {fileID: 50986815831996268}
+  - component: {fileID: 114754362130021644}
   m_Layer: 8
-  m_Name: RedEnemyBoss
+  m_Name: EnemyBoss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1645168322133030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.785, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 3.8, y: 3.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0030678213, y: 0.024542093}
+  m_Offset: {x: -0.0022748932, y: 0.0067328215}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6078935, y: 0.4606411}
+  m_Size: {x: 0.39062035, y: 0.49625963}
   m_EdgeRadius: 0
 --- !u!114 &114754362130021644
 MonoBehaviour:
@@ -101,8 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHelth: 3
   enemyScoreValue: 10
-  projectile: {fileID: 1961231129763756, guid: f54bc57c9e2632f4db9938d8fcee5daf, type: 2}
-  projectileSpeed: 4
+  projectile: {fileID: 1788995355924326, guid: 30c490fd981427446a5d178a7e6bf49f, type: 2}
   stepLength: 0.8
   countFirstStep: 4
   countSteps: 8

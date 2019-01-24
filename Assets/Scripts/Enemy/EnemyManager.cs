@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
+using EnemyGrid; 
 
 public class EnemyManager : MonoBehaviour {
 
@@ -17,7 +18,9 @@ public class EnemyManager : MonoBehaviour {
     public Transform enemyHolder;
      
     public Transform[] targetPoints;
-     
+
+    EnemyGridCreator enemyGridCreator;
+
     List<Enemy> enemiesList = new List<Enemy>();
 
     private void Awake()
@@ -27,16 +30,25 @@ public class EnemyManager : MonoBehaviour {
             _instance = this;
         }
     }  
-     
-    public void CreateEnemies(EnemyGridCreator enemyGrid)
+    
+    public void InitEnemyGrid(int height, int width)
     {
-        for (int row = 0; row < enemyGrid.GridRows; row++)
+        enemyGridCreator = new EnemyGridCreator(height, width);
+
+        enemyGridCreator.InitLevel(GameManager.Instance.CurLevel);
+
+        CreateEnemies();
+    }
+
+    void CreateEnemies()
+    {
+        for (int r = 0; r < enemyGridCreator.GridRows; r++)
         {
-            for (int col = 0; col < enemyGrid.GridColumns; col++)
+            for (int c = 0; c < enemyGridCreator.GridColumns; c++)
             {
-                if (enemyGrid[row, col] != EnemyType.None)
+                if (enemyGridCreator[r, c].EnemyType != EnemyType.None)
                 {
-                    GameObject newEnemy = CreateEnemyByType(enemyGrid[row, col], row, col); 
+                    GameObject newEnemy = CreateEnemyByType(enemyGridCreator[r, c].Row, enemyGridCreator[r, c].Col, enemyGridCreator[r, c].EnemyType); 
                     newEnemy.transform.SetParent(enemyHolder);
 
                     AddEnemyToList(newEnemy);
@@ -45,7 +57,7 @@ public class EnemyManager : MonoBehaviour {
         }
     }
 
-    GameObject CreateEnemyByType(EnemyType enemyType, int row, int col)
+    GameObject CreateEnemyByType(float row, float col, EnemyType enemyType)
     {
         GameObject enemy = null; 
         switch (enemyType)
@@ -69,11 +81,11 @@ public class EnemyManager : MonoBehaviour {
         enemiesList.Add(enemyScript);
     }
 
-    public void UpdateEnemyLogic(int numLevel)
+    public void UpdateEnemyLogic()
     { 
         StartCoroutine(RandomEnemyFire());
 
-        if(numLevel == 2)
+        if(GameManager.Instance.CurLevel == 2)
             StartCoroutine(RandomEnemyPlayerAttack());
     }
 
@@ -86,13 +98,13 @@ public class EnemyManager : MonoBehaviour {
             if (enemiesList[randIndex] != null) 
                 enemiesList[randIndex].Fire(); 
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2.5f);
         }
     }
 
     IEnumerator RandomEnemyPlayerAttack()
     {
-        yield return new WaitForSeconds(0.5f); 
+        yield return new WaitForSeconds(1.5f); 
 
         while (enemiesList.Count > 0 && !GameManager.Instance.IsGameOver)
         {

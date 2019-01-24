@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UI; 
  
 [System.Serializable]
 public struct ObjectSpawn
@@ -15,21 +15,25 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance { get { return _instance; } }
       
+    [Header("UI")]
     public Text playerScoreText;
     public Text playerHelthText;
     public Text gameLevelText;
-     
-    public GameObject[] bonuses; 
+    public GameObject gameOverPanel;
+
+    [Header("Bonuses")] 
+    public GameObject[] bonuses;
     public ObjectSpawn objectSpawn;
 
-    public int countLevels;
+    [Header("Other")]
+    public int EnemyGridHeight;
+    public int EnemyGridWidth;
      
-    EnemyGridCreator enemyGrid;
-
-    private int _numOfLevel = 1;
+    public int countLevels;
+      
     private int _playerScore = 0;
     private Queue<int> _nextScoreToBonus;
-    private int _scoreStepToBonus = 70;
+    private int _scoreStepToBonus = 50;
     private int _countBonuses = 5;
      
     private bool _isGameOver;
@@ -37,6 +41,13 @@ public class GameManager : MonoBehaviour {
     public bool IsGameOver
     {
         get { return _isGameOver; }
+    }
+
+    private int _numOfLevel = 1;
+
+    public int CurLevel
+    {
+        get { return _numOfLevel; }
     }
 
     private void Awake()
@@ -48,13 +59,11 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start()
-    { 
-        enemyGrid = new EnemyGridCreator(5, 13);
-
+    {  
         _nextScoreToBonus = new Queue<int>(_countBonuses); 
         InitScoreBonusPerSteps();
 
-        StartCoroutine(InitLevel(_numOfLevel)); 
+        StartCoroutine(InitNewLevel()); 
     }
 
     void InitScoreBonusPerSteps()
@@ -63,17 +72,15 @@ public class GameManager : MonoBehaviour {
             _nextScoreToBonus.Enqueue(i);
     }
      
-    private IEnumerator InitLevel(int numOfLevel)
+    private IEnumerator InitNewLevel()
     {
-        gameLevelText.text = "Level" + numOfLevel.ToString();
+        gameLevelText.text = "Level" + _numOfLevel.ToString();
         gameLevelText.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(0.3f);
-
-        enemyGrid.InitLevel(numOfLevel); 
-
-        EnemyManager.Instance.CreateEnemies(enemyGrid);
-        EnemyManager.Instance.UpdateEnemyLogic(numOfLevel);
+        yield return new WaitForSeconds(0.5f);
+         
+        EnemyManager.Instance.InitEnemyGrid(EnemyGridHeight, EnemyGridWidth);
+        EnemyManager.Instance.UpdateEnemyLogic();
 
         gameLevelText.gameObject.SetActive(false); 
     }
@@ -84,7 +91,7 @@ public class GameManager : MonoBehaviour {
         {
             _nextScoreToBonus.Dequeue();
 
-            GameObject bonus = bonuses[0];//Random.Range(0, bonuses.Length)
+            GameObject bonus = bonuses[2];//Random.Range(0, bonuses.Length)
             Vector2 spawnPosition = new Vector2(Random.Range(objectSpawn.xMin, objectSpawn.xMax), objectSpawn.y);
             Instantiate(bonus, spawnPosition, Quaternion.identity);
         }
@@ -107,7 +114,7 @@ public class GameManager : MonoBehaviour {
         else
         { 
             _numOfLevel++; 
-            StartCoroutine(InitLevel(_numOfLevel));
+            StartCoroutine(InitNewLevel());
         }
     }
      
@@ -121,12 +128,12 @@ public class GameManager : MonoBehaviour {
 
     public void SetPlayerHelth(int helth)
     {
-        playerHelthText.text = "Helth: " + helth;
+        playerHelthText.text = helth.ToString();
 
         if (helth <= 0)
         {
             _isGameOver = true;
-            Debug.Log("Game is over");
+            gameOverPanel.SetActive(true);
         }
     }
 }

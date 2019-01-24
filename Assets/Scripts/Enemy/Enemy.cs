@@ -9,8 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] 
     private int enemyScoreValue;
 
-    public GameObject projectile;
-    public float projectileSpeed;
+    public GameObject projectile; 
       
     [Header("Base_Move")]
     public float stepLength; 
@@ -48,7 +47,7 @@ public class Enemy : MonoBehaviour
          
         StartCoroutine(ForwardMove());
 
-        InvokeRepeating("Fire", 0, 1);
+        InvokeRepeating("Fire", 0, 1.5f);
     } 
      
     IEnumerator BaseMove()

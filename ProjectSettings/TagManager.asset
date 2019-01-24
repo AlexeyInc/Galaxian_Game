@@ -4,13 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - PlayerProjectile
-  - EnemyProjectile
   - ExtraLife
-  - AddFire
   - Shield
   - Enemy
-  - Boundary
+  - EnemyProjectile
+  - AddWeapon
   layers:
   - Default
   - TransparentFX

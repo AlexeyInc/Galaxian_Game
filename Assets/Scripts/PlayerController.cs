@@ -22,7 +22,9 @@ public class PlayerController : MonoBehaviour
     public float timeNextFire;
 
     Rigidbody2D _rb;
+
     int _countShootingSpawn = 1;
+    bool _shieldIsActive; 
 
     void Start()
     {
@@ -59,10 +61,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "EnemyProjectile") 
+        if (other.gameObject.tag == "EnemyProjectile" && !_shieldIsActive) 
             GameManager.Instance.SetPlayerHelth(--helth);
 
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && !_shieldIsActive)
             GameManager.Instance.SetPlayerHelth(0);
 
         Destroy(other.gameObject);
@@ -74,17 +76,14 @@ public class PlayerController : MonoBehaviour
 
         switch (tag)
         { 
-            case "AddFire":
-                AddShootingSpawn();
-                Debug.Log("Edd new fire");
+            case "AddWeapon":
+                AddShootingSpawn(); 
                 break;
             case "ExtraLife":
-                GameManager.Instance.SetPlayerHelth(++helth);
-                Debug.Log("Add extra life");
+                GameManager.Instance.SetPlayerHelth(++helth); 
                 break;
             case "Shield":
-                CreateShield();
-                Debug.Log("Shield");
+                CreateShield(); 
                 break;
             default:
                 break;
@@ -102,8 +101,20 @@ public class PlayerController : MonoBehaviour
     } 
 
     private void CreateShield()
-    {
+    { 
         GameObject playerShield = Instantiate(shield, this.transform.position, Quaternion.identity);
         playerShield.transform.SetParent(this.transform);
+
+        _shieldIsActive = true;
+
+        StartCoroutine(DeactiveShield(playerShield));
+    }
+
+    private IEnumerator DeactiveShield(GameObject shield)
+    {
+        yield return new WaitForSeconds(10f);
+
+        _shieldIsActive = false;
+        Destroy(shield);
     }
 }
