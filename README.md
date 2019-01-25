@@ -10,9 +10,7 @@ Modernized clone of classic [galaxian game](https://ru.wikipedia.org/wiki/Galaxi
 
 ![screenshot_1](https://user-images.githubusercontent.com/29926552/51763323-fd87b700-20da-11e9-8629-6086ca42c332.png)
  
-
-![levellast](https://user-images.githubusercontent.com/29926552/51766740-fadd8f80-20e3-11e9-87ca-e93e8a8cd20c.gif)
-
+![game](https://user-images.githubusercontent.com/29926552/51767093-07161c80-20e5-11e9-8bd4-c4a1cc83fa5e.gif)
 
 
 
