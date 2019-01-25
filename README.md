@@ -1,6 +1,6 @@
 # Galaxian_Game
 
-Modernized clone of classic [galaxian game] (https://ru.wikipedia.org/wiki/Galaxian). 
+Modernized clone of classic [galaxian game](https://ru.wikipedia.org/wiki/Galaxian). 
 
 ## What this game has 
 - 2 simple level and Boss-level
