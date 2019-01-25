@@ -2,7 +2,7 @@
 
 Modernized clone of classic [galaxian game](https://ru.wikipedia.org/wiki/Galaxian). 
 
-** What this game has: ** 
+**What this game has:** 
 - 2 simple level and Boss-level
 - 3 types of bonus
 - beautiful spaceship explosions
