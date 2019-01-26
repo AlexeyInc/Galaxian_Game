@@ -2,13 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{  
-    [SerializeField]
-    private int helth;
-    [SerializeField] 
-    private int scoreValue;
-
+public class EnemyBehavior : MonoBehaviour
+{   
     public GameObject projectile;
       
     [Header("Base_Move")]
@@ -104,17 +99,4 @@ public class Enemy : MonoBehaviour
     {
         Instantiate(projectile, this.transform.position, Quaternion.identity);
     } 
-
-    public void TakeDamage(bool kill = false)
-    {
-        helth--;
-
-        if (helth <= 0 || kill)
-        { 
-            EnemyManager.Instance.KillEnemy(this);
-
-            GameManager.Instance.AddPlayerScore(scoreValue); 
-            GameManager.Instance.CheckLevelComplete(); 
-        }
-    }
 }

@@ -10,8 +10,8 @@ public class PlayerProjectile : MonoBehaviour {
                 Destroy(other.gameObject); 
         else
         if (other.gameObject.tag == "Enemy")
-        {  
-            Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
+        {
+            EnemyHelth enemyScript = other.gameObject.GetComponent<EnemyHelth>();
             enemyScript.TakeDamage(); 
         }  
 

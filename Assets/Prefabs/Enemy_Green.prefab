@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61646608591691990}
   - component: {fileID: 50626684811158548}
   - component: {fileID: 114830819050794714}
+  - component: {fileID: 114435214242116866}
   m_Layer: 8
   m_Name: Enemy_Green
   m_TagString: Enemy
@@ -88,6 +89,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5032228, y: 0.5218872}
   m_EdgeRadius: 0
+--- !u!114 &114435214242116866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387541277991760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f72b1f7f45b99cb4aaca16f13243af02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 1
+  helth: 1
 --- !u!114 &114830819050794714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,8 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484d19f14a666074e83978845f875d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  helth: 1
-  scoreValue: 5
   projectile: {fileID: 1788995355924326, guid: 30c490fd981427446a5d178a7e6bf49f, type: 2}
   stepLength: 0.8
   countFirstStep: 4

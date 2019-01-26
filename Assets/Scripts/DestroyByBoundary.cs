@@ -13,7 +13,7 @@ public class DestroyByBoundary : MonoBehaviour {
 
         if (other.gameObject.tag == "Enemy")
         {
-            Enemy enemyScript = other.gameObject.GetComponent<Enemy>();
+            EnemyHelth enemyScript = other.gameObject.GetComponent<EnemyHelth>();
             enemyScript.TakeDamage(true);
         }
     } 
