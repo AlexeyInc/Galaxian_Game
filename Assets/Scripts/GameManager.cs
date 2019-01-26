@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
 
     private int _playerScore = 0;
     private Queue<int> _nextScoreToBonus;
-    private int _scoreStepToBonus = 50;
+    private int _scoreStepToBonus = 15;
     private int _countBonuses = 5;
 
     private bool _isGameOver;
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour {
 
     private int _numOfLevel = 1;
 
-    public int CurLevel
+    public int CurrentLevel
     {
         get { return _numOfLevel; }
     }

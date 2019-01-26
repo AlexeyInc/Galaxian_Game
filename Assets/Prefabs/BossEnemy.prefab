@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   attackMoveSpeed: 9
-  helth: 10
+  helth: 25
   projectile: {fileID: 1788995355924326, guid: 30c490fd981427446a5d178a7e6bf49f, type: 2}
   projectileSpawns:
   - {fileID: 4460098923431580}

@@ -6,9 +6,14 @@ public class PlayerShield : MonoBehaviour {
      
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "EnemyProjectile" || other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "EnemyProjectile")
         { 
             Destroy(other.gameObject);
+        }
+        else if (other.gameObject.tag == "Enemy")
+        {
+            EnemyHelth enemyScript = other.gameObject.GetComponent<EnemyHelth>();
+            enemyScript.TakeDamage(kill: true);
         }
     }
 }

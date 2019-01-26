@@ -23,7 +23,7 @@ public class EnemyManager : MonoBehaviour {
 
     EnemyGridCreator enemyGridCreator;
 
-    List<Enemy> enemiesList = new List<Enemy>();
+    List<EnemyBehavior> enemiesList = new List<EnemyBehavior>();
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class EnemyManager : MonoBehaviour {
     {
         enemyGridCreator = new EnemyGridCreator(height, width);
 
-        enemyGridCreator.InitLevel(GameManager.Instance.CurLevel);
+        enemyGridCreator.InitLevel(GameManager.Instance.CurrentLevel);
 
         CreateEnemies();
     }
@@ -79,7 +79,7 @@ public class EnemyManager : MonoBehaviour {
 
     void AddEnemyToList(GameObject enemy)
     {
-        Enemy enemyScript = enemy.GetComponent<Enemy>();
+        EnemyBehavior enemyScript = enemy.GetComponent<EnemyBehavior>();
         enemiesList.Add(enemyScript);
     }
 
@@ -87,7 +87,7 @@ public class EnemyManager : MonoBehaviour {
     { 
         StartCoroutine(RandomEnemyFire());
 
-        if(GameManager.Instance.CurLevel == 2)
+        if(GameManager.Instance.CurrentLevel == 2)
             StartCoroutine(RandomEnemyPlayerAttack());
     }
 
@@ -124,8 +124,8 @@ public class EnemyManager : MonoBehaviour {
         return targetPoints[index].position;
     }
 
-    public void KillEnemy(Enemy enemy)
-    {
+    public void KillEnemy(EnemyBehavior enemy)
+    {  
         enemiesList.Remove(enemy);
 
         Destroy(enemy.gameObject);
